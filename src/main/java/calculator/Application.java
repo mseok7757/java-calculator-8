@@ -9,9 +9,14 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         String input = Console.readLine();
+        System.out.println("덧셈할 문자열을 입력해 주세요.");
 
-        int result = calculate(input);
-        System.out.println(result);
+        try {
+            int result = calculate(input);
+            System.out.println("결과 : " + result);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 
@@ -35,7 +40,11 @@ public class Application {
         // 정수형으로 변환후 합산
         int sum = 0;
         for (String number : numbers){
-            sum += Integer.parseInt(number);
+            try {
+                sum += Integer.parseInt(number);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("잘못된 값이 입력되었습니다.");
+            }
         }
 
 
